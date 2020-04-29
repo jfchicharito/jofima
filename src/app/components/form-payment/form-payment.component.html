@@ -1,0 +1,29 @@
+<form class="example-form" [formGroup]="fromService.getForm()" >
+  <mat-form-field>
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker" [min]="startDate" formControlName="paymentDate" required>
+    <mat-error *ngIf="fromService.checkError('paymentDate','required')">field Date is required!</mat-error>
+    <mat-error >Invalid date format</mat-error>
+    <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+    <mat-datepicker #picker  ></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Description of Payment </mat-label>
+    <input matInput placeholder="Description" formControlName="description"  >
+    <mat-error *ngIf="fromService.checkError('description', 'maxlength')">Description field must not be longer than 255 symbols!</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Amoint </mat-label>
+<input matInput placeholder="" type="number" formControlName="amount"  required>
+    <mat-error *ngIf="fromService.checkError('amount','required')">the field Amount is required!</mat-error>
+    <mat-error *ngIf="fromService.checkError('amount','pattern')">only two decimal!</mat-error>
+    <mat-error>Only alow numeric values and positive values</mat-error>
+  </mat-form-field>
+
+  <mat-card-actions>
+    <mat-card-actions aling="center">
+      <button mat-raised-button color="primary" (click)="guardar()" type="button" >Save</button>
+    </mat-card-actions>
+  </mat-card-actions>
+</form>
